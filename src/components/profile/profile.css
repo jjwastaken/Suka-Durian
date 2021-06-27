@@ -1,0 +1,44 @@
+.profile{
+    position: relative;
+    font-family: 'Raleway', sans-serif;
+    max-width: 600px;
+    margin: auto;
+    padding-left: 10px;
+}
+.circle{
+    position: absolute;
+    top: 40px;
+    height: 200px;
+    width: 200px;
+    margin: auto;
+}
+.backgroundCircleBack{
+    background-color: #99dddd;
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+    /* margin: 40px 0 0 -40px; */
+    padding: 3.5%;
+}
+.backgroundCircleMid{
+    background-color: #13acb2;
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+    padding: 3.5%;
+}
+.imgInCircle{
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: middle;
+}
+.profileName{
+    position: absolute;
+    font-size: 40px;
+    top: 40px;
+    padding-top: 50px;
+    padding-left: 50px;
+    margin: auto;
+}

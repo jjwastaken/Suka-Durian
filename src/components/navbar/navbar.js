@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faHome, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import "./navbar.css";
-import { Row, Col } from "react-bootstrap"
+import { Row, Col } from "react-bootstrap";
 
 const tabs = [{
     route: "/",
@@ -20,7 +20,7 @@ export default function Navbar() {
     return (
         <div>
             {/* TOP Tab Navigator*/}
-            {/* <nav className="navbar navbar-expand-md navbar-light sticky-top" role="navigation">
+            <nav className="navbar navbar-expand-md navbar-light sticky-top" role="navigation">
                 <div className="container-fluid">
                     <a className="navbar-brand" href="/">Brand</a>
                     <Nav className="ml-auto">
@@ -36,7 +36,7 @@ export default function Navbar() {
                         </NavItem>
                     </Nav>
                 </div>
-            </nav> */}
+            </nav>
             {/* BOTTOM Tab Navigator*/}
             {/* <Row className="botNav">
                 <Col >

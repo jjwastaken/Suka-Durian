@@ -9,11 +9,11 @@ function Navigation() {
     return (
         <div>
             <Router>
+                <Navbar />
                 <Switch>
                     <Route path="/profile" component={Profile} />
                     <Route path="/" component={App} />
                 </Switch>
-                <Navbar />
             </Router>
         </div>
     )
