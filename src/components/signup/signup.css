@@ -1,0 +1,16 @@
+.signup{
+    position: relative;
+    font-family: 'Raleway', sans-serif;
+    max-width: 600px;
+    margin: auto;
+    padding-left: 10px;
+    padding-bottom: 100px;
+}
+.brandImg{
+    position: relative;
+    margin: auto;
+}
+.textSignup{
+    position: relative;
+    margin: auto;
+}

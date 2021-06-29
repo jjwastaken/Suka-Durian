@@ -1,17 +1,24 @@
 .navbar {
     border-bottom: solid 2px #EBEBEB;
-  }
-  .bottom-tab-nav {
+}
+.bottom-tab-nav {
     border-top: solid 2px #EBEBEB;
-  }
-  .nav-link,
-  .bottom-nav-link {
-    color: #55575b;
-  }
-  .bottom-nav-link.active {
-    color: #922c88;
-  }
-  .bottom-tab-label {
-    font-size: 12px;
-  }
+    background-color: #EBEBEB;
+}
+.nav-link,
+.bottom-nav-link {
+  color: #55575b;
+}
+.bottom-nav-link.active {
+  color: #922c88;
+}
+.bottom-tab-label {
+  font-size: 12px;
+}
+.loginButton{
+  background-color: #4CAF50; /* Green */
+  border: solid;
+  color: white;
+  text-align: center;
   
+}  

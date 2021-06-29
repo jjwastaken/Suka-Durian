@@ -34,6 +34,11 @@ export default function Navbar() {
                                 Profile
                             </NavLink>
                         </NavItem>
+                        <NavItem>
+                            <NavLink to="/login" className="nav-link">
+                                <button className="loginButton">Login</button>
+                            </NavLink>
+                        </NavItem>
                     </Nav>
                 </div>
             </nav>
