@@ -11,3 +11,5 @@ CREATE TABLE profiles(
 SELECT * FROM profiles;
 
 ALTER TABLE profiles ALTER COLUMN MobileNumber TYPE VARCHAR(50);
+
+DELETE FROM profiles WHERE name='JJ';

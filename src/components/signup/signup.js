@@ -12,17 +12,12 @@ export default function Signup() {
     const onSubmitForm = async e => {
         //e.preventDefault();
         try {
-            const bodyName = {name};
-            const bodyEmail = {email};
-            const bodyPassword = {password};
-            const bodyMobileNumber = {mobileNumber};
-            
             const response = await fetch("http://localhost:5000/profiles", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
-                body: JSON.stringify({name: bodyName, email: bodyEmail, password: bodyPassword, mobilenumber: bodyMobileNumber}),
+                body: JSON.stringify({name: name, email: email, password: password, mobilenumber: mobileNumber}),
             })
-            console.log(response);
+            //console.log(response);
         } catch (error) {
             console.error(error.message);
         }

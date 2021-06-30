@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Row, Col } from "react-bootstrap";
 import "./login.css";
 import durianProfile from "../../img/durianProfile.jpg";
@@ -12,17 +12,32 @@ export default function Login() {
     const onSubmitForm = async e => {
         //e.preventDefault();
         try {
-            const bodyName = {name};
-            const bodyEmail = {email};
-            const bodyPassword = {password};
-            const bodyMobileNumber = {mobileNumber};
-            
-            const response = await fetch("http://localhost:5000/profiles", {
-                method: "POST",
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify({name: bodyName, email: bodyEmail, password: bodyPassword, mobilenumber: bodyMobileNumber}),
-            })
-            console.log(response);
+            const response = await fetch("http://localhost:5000/profiles");
+            const jsonData = await response.json();
+            const stringUser = JSON.stringify(jsonData);
+            var users = JSON.parse(stringUser);
+
+            // const user = JSON.stringify(jsonData);
+            // const inUser = user.includes(email);
+            //console.log(user);
+            for(var i in users)
+            {
+                if(users[i].email === email)
+                {
+                    console.log(users[i].email);
+                    console.log(i);
+                }
+            }
+            let hasUser = users.some( user => user['email'] === email);
+            //let userLogin = users.filter( user => user['email'] === email);
+            if(hasUser)
+            {
+                console.log(users, " found!");
+            }
+            else{
+                console.log(users, "NOT found!");
+            }
+            //console.log(JSON.stringify(jsonData));
         } catch (error) {
             console.error(error.message);
         }
@@ -75,6 +90,8 @@ export default function Login() {
                         value={mobileNumber} 
                         onChange={e => setMobileNumber(e.target.value)}
                     />
+                    <br />
+                    <a href="/signup">Don't have an account? Sign up here!</a>
                     <br />
                     <button className="btn btn-success">Submit</button>
                 </form>
