@@ -1,0 +1,13 @@
+.home{
+    position: relative;
+    font-family: 'Raleway', sans-serif;
+    max-width: 600px;
+    margin: auto;
+  }
+  .homeBody{
+    margin: auto;
+  }
+  .img1{
+    height: 404px;
+    width: 600px;
+  }

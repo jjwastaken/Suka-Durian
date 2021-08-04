@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faHome, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import "./navbar.css";
+import "../../App";
 import { Row, Col } from "react-bootstrap";
 
 const tabs = [{
@@ -16,10 +17,12 @@ const tabs = [{
     label: "Profile"
 }]
 
-export default function Navbar() {
+export default function Navbar({setAuth}) {
     return (
         <div>
             {/* TOP Tab Navigator*/}
+            {setAuth=false}
+            {console.log("setauth in NAVBAR is: " + Boolean(setAuth))}
             <nav className="navbar navbar-expand-md navbar-light sticky-top" role="navigation">
                 <div className="container-fluid">
                     <a className="navbar-brand" href="/">Brand</a>
@@ -34,11 +37,18 @@ export default function Navbar() {
                                 Profile
                             </NavLink>
                         </NavItem>
+                        {/* Login and Logout button */}
+                        {!setAuth ?
                         <NavItem>
                             <NavLink to="/login" className="nav-link">
                                 <button className="loginButton">Login</button>
                             </NavLink>
-                        </NavItem>
+                        </NavItem> : 
+                        <NavItem>
+                        <NavLink to="/profile" className="nav-link">
+                            <button className="loginButton" onClick={() => setAuth(false)}>Logout</button>
+                        </NavLink>
+                    </NavItem>}
                     </Nav>
                 </div>
             </nav>

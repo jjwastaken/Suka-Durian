@@ -3,7 +3,7 @@ import { Row, Col } from "react-bootstrap";
 import "./signup.css";
 import durianProfile from "../../img/durianProfile.jpg";
 
-export default function Signup() {
+export default function Signup({setAuth}) {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -12,11 +12,17 @@ export default function Signup() {
     const onSubmitForm = async e => {
         //e.preventDefault();
         try {
-            const response = await fetch("http://localhost:5000/profiles", {
+            const response = await fetch("http://localhost:5000/auth/users", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({name: name, email: email, password: password, mobilenumber: mobileNumber}),
             })
+            
+            const parseRes = await response.json();
+            localStorage.setItem("token", parseRes.token);
+            setAuth(true);
+            //console.log(setAuth);
+            //console.log(parseRes); shows token
             //console.log(response);
         } catch (error) {
             console.error(error.message);
@@ -34,7 +40,7 @@ export default function Signup() {
                 </h1>
             </Row>
             <Row>
-                <form className="textSignup" onSubmit={onSubmitForm}>
+                <form className="textSignup">
                     <label>Name:</label><br />
                     <input 
                         type="form-control" 
@@ -42,6 +48,8 @@ export default function Signup() {
                         id="name" 
                         value={name} 
                         onChange={e => setName(e.target.value)}
+                        className="form-control my-0"
+                        // placeholder="Name"
                     />
                     <br />
                     <label>Email:</label><br />
@@ -51,6 +59,8 @@ export default function Signup() {
                         id="email" 
                         value={email} 
                         onChange={e => setEmail(e.target.value)}
+                        className="form-control my-0"
+                        // placeholder="Email"
                     />
                     <br />
                     <label>Password:</label><br />
@@ -60,6 +70,7 @@ export default function Signup() {
                         id="password" 
                         value={password} 
                         onChange={e => setPassword(e.target.value)}
+                        className="form-control my-0"
                     />
                     <br />
                     <label>Mobile Number:</label><br />
@@ -69,9 +80,10 @@ export default function Signup() {
                         id="mobileNumber" 
                         value={mobileNumber} 
                         onChange={e => setMobileNumber(e.target.value)}
+                        className="form-control my-0"
                     />
                     <br />
-                    <button className="btn btn-success">Submit</button>
+                    <button className="btn btn-block btn-success" type="button" onClick={onSubmitForm}>Submit</button>
                 </form>
             </Row>
             <Row>
