@@ -8,6 +8,11 @@ import Navbar from "./components/navbar/navbar";
 import Signup from "./components/signup/signup";
 import Login from "./components/login/login";
 
+import {toast} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+toast.configure();
+
 export default function App() {
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);

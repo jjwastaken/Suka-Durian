@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Row, Col } from "react-bootstrap";
 import "./signup.css";
 import durianProfile from "../../img/durianProfile.jpg";
+import {toast} from "react-toastify";
 
 export default function Signup({setAuth}) {
     const [name, setName] = useState("");
@@ -19,9 +20,15 @@ export default function Signup({setAuth}) {
             })
             
             const parseRes = await response.json();
-            localStorage.setItem("token", parseRes.token);
-            setAuth(true);
-            window.location.reload();
+            if(parseRes.token){
+                localStorage.setItem("token", parseRes.token);
+                setAuth(true);
+                toast.success("SignUp Successfully!");
+            }
+            else{
+                setAuth(false);
+                toast.error(parseRes);
+            }
             //console.log(setAuth);
             //console.log(parseRes); shows token
             //console.log(response);

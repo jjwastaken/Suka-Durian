@@ -3,6 +3,7 @@ import { Row, Col } from "react-bootstrap";
 import "./login.css";
 import durianProfile from "../../img/durianProfile.jpg";
 import { Link } from 'react-router-dom';
+import {toast} from "react-toastify";
 
 export default function Login({setAuth}) {
     const [name, setName] = useState("");
@@ -20,42 +21,17 @@ export default function Login({setAuth}) {
             });
 
             const parseRes = await response.json();
-            localStorage.setItem("token", parseRes.token);
-            setAuth(true);
-            console.log(parseRes);
-            window.location.reload();
-            // const jsonData = await response.json();
-            // const stringUser = JSON.stringify(jsonData);
-            // var users = JSON.parse(stringUser);
 
-            // // const user = JSON.stringify(jsonData);
-            // // const inUser = user.includes(email);
-            // //console.log(user);
-            // let index;
-            // for (var i in users) {
-            //     if (users[i].email === email) {
-            //         console.log(users[i].email);
-            //         console.log(i);
-            //         index = i
-            //         break;
-            //     }
-            // }
-            // let hasUser = users.some(user => user['email'] === email);
-            // //let userLogin = users.filter( user => user['email'] === email);
-            // if (hasUser) {
-            //     console.log(users[index].email, " found!");
-            //     if (users[index].password === password) {
-            //         console.log("Password match!");
-            //         // setIsLoggedIn(true);
-            //     }
-            //     else {
-            //         console.log("Password DONT match!");
-            //     }
-            // }
-            // else {
-            //     console.log(email, "NOT found!");
-            // }
-            // //console.log(JSON.stringify(jsonData));
+            if(parseRes.token) {
+                localStorage.setItem("token", parseRes.token);
+                setAuth(true);
+                toast.success("Login Successfully!");
+            }
+            else{
+                setAuth(false);
+                toast.error(parseRes); // this will return error from jwtAuth.js
+            }
+            //console.log(parseRes);
         } catch (error) {
             console.error(error.message);
         }

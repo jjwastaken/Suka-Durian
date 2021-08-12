@@ -6,6 +6,8 @@ import { faSearch, faHome, faUserCircle, faLongArrowAltUp } from '@fortawesome/f
 import "./navbar.css";
 import "../../App";
 
+import {toast} from "react-toastify";
+
 const tabs = [{
     route: "/",
     icon: faHome,
@@ -35,17 +37,20 @@ export default function Navbar({setAuth}) {
         }
       }
 
+      function refresh(){
+        window.location.reload();
+      }
       const logout = (e) => {
           localStorage.removeItem("token");
           setAuth(false);
-          window.location.reload();
+          toast.success("Logout Successfully!");
       }
     
     // useEffect makes many requests, adding the "[]" enables you to only make 1 request
+    // There's no "[]" because I want navbar to refresh so that login button will change.
       useEffect(() => {
         getName()
-    
-      }, []);
+      });
 
     return (
         <div>
