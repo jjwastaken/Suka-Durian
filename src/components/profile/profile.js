@@ -7,7 +7,7 @@ const profileName = "Guest";
 
 export default function Profile() {
     const [name, setName] = useState("");
-
+    
     async function getName() {
         try {
           const response = await fetch("http://localhost:5000/home/", {
@@ -44,7 +44,7 @@ export default function Profile() {
                     </div>
                 </Col>
                 <Col>
-                {name == "Guest" ?
+                {!name ?
                     <div className="profileName">
                         {profileName}
                     </div>:
