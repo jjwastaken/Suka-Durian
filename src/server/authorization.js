@@ -5,7 +5,6 @@ require("dotenv").config();
 module.exports = async (req, res, next) => {
     try {
         const jwtToken = req.header("token");
-        
         // check if there's token
         if(!jwtToken) // if no token
         {

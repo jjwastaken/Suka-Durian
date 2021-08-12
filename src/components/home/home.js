@@ -15,19 +15,25 @@ export default function Home({setAuth}) {
       });
 
       const parseRes = await response.json();
-      console.log(parseRes);
+      // console.log(parseRes);
+      setName(parseRes.user_name);
     } catch (error) {
       console.error(error.message);
     }
   }
 
+  // useEffect makes many requests, adding the "[]" enables you to only make 1 request
   useEffect(() => {
     getName()
-  })
+
+  }, []);
 
   return (
     <div className="home">
-      <h1>Welcome to Suka Durian, friend!</h1>
+      {!name ?
+      <h1>Welcome to Suka Durian!</h1> :
+      <h1>Welcome to Suka Durian, {name}!</h1>
+      }
       <Row className="homeBody">
         <img
           className="img1"

@@ -1,4 +1,4 @@
-import React, { Fragment, useState} from "react";
+import React, { Fragment, useEffect, useState} from "react";
 //import './App.css';
 import { Row, Col } from "react-bootstrap";
 import { BrowserRouter as Router, Route, Link, Switch, Redirect } from 'react-router-dom';
@@ -15,6 +15,33 @@ export default function App() {
   const setAuth = boolean => {
     setIsAuthenticated(boolean);
   };
+
+  // If user already login and has valid token,
+  // this prevents React from refreshing state.
+  async function isAuth() {
+    try {
+      
+      const response = await fetch("http://localhost:5000/auth/is-verify", {
+        method: "GET",
+        headers: {token: localStorage.token}
+      });
+
+      const parseRes = await response.json();
+      
+      if(parseRes == "Not Authorize") {
+        setIsAuthenticated(false);
+      }
+      else{
+        setIsAuthenticated(true);
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
+
+  useEffect(() => {
+    isAuth();
+  });
 
   return (
     <Fragment>

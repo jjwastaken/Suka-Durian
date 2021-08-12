@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Row, Col } from "react-bootstrap";
 import "./login.css";
 import durianProfile from "../../img/durianProfile.jpg";
-import { Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function Login({setAuth}) {
     const [name, setName] = useState("");
@@ -113,7 +113,7 @@ export default function Login({setAuth}) {
                             className="form-control"
                         />
                         <br />
-                        <a href="/signup">Don't have an account? Sign up here!</a>
+                        <Link to="/signup">Don't have an account? Sign up here!</Link>
                         <br />
                         <button className="btn btn-block btn-success" type="button" onClick={onSubmitForm}>Submit</button>
                     </form>
