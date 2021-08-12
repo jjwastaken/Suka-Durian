@@ -21,6 +21,7 @@ export default function Signup({setAuth}) {
             const parseRes = await response.json();
             localStorage.setItem("token", parseRes.token);
             setAuth(true);
+            window.location.reload();
             //console.log(setAuth);
             //console.log(parseRes); shows token
             //console.log(response);

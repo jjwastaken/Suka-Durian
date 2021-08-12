@@ -23,6 +23,7 @@ export default function Login({setAuth}) {
             localStorage.setItem("token", parseRes.token);
             setAuth(true);
             console.log(parseRes);
+            window.location.reload();
             // const jsonData = await response.json();
             // const stringUser = JSON.stringify(jsonData);
             // var users = JSON.parse(stringUser);

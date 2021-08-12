@@ -1,11 +1,10 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Nav, NavItem } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faHome, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faHome, faUserCircle, faLongArrowAltUp } from '@fortawesome/free-solid-svg-icons';
 import "./navbar.css";
 import "../../App";
-import { Row, Col } from "react-bootstrap";
 
 const tabs = [{
     route: "/",
@@ -18,11 +17,39 @@ const tabs = [{
 }]
 
 export default function Navbar({setAuth}) {
+
+    const [name, setName] = useState("");
+    
+    async function getName() {
+        try {
+          const response = await fetch("http://localhost:5000/home/", {
+            method: "GET",
+            headers: {token: localStorage.token}
+          });
+    
+          const parseRes = await response.json();
+          // console.log(parseRes);
+          setName(parseRes.user_name);
+        } catch (error) {
+          console.error(error.message);
+        }
+      }
+
+      const logout = (e) => {
+          localStorage.removeItem("token");
+          setAuth(false);
+          window.location.reload();
+      }
+    
+    // useEffect makes many requests, adding the "[]" enables you to only make 1 request
+      useEffect(() => {
+        getName()
+    
+      }, []);
+
     return (
         <div>
             {/* TOP Tab Navigator*/}
-            {setAuth=false}
-            {console.log("setauth in NAVBAR is: " + Boolean(setAuth))}
             <nav className="navbar navbar-expand-md navbar-light sticky-top" role="navigation">
                 <div className="container-fluid">
                     <a className="navbar-brand" href="/">Brand</a>
@@ -38,16 +65,21 @@ export default function Navbar({setAuth}) {
                             </NavLink>
                         </NavItem>
                         {/* Login and Logout button */}
-                        {!setAuth ?
+                        {!name ?
                         <NavItem>
                             <NavLink to="/login" className="nav-link">
                                 <button className="loginButton">Login</button>
                             </NavLink>
                         </NavItem> : 
                         <NavItem>
-                        <NavLink to="/profile" className="nav-link">
-                            <button className="loginButton" onClick={() => setAuth(false)}>Logout</button>
-                        </NavLink>
+                            <div className="dropdown">
+                                <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {name}
+                                </button>
+                                <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                    <button className="dropdown-item" onClick={e => logout(e)}>Logout</button>
+                                </div>
+                            </div>
                     </NavItem>}
                     </Nav>
                 </div>
